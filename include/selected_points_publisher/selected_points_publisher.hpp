@@ -24,33 +24,31 @@
 #define SELECTED_POINTS_PUBLISHER_HPP
 
 #ifndef Q_MOC_RUN  // See: https://bugreports.qt-project.org/browse/QTBUG-22829
-#include <ros/node_handle.h>
-#include <ros/publisher.h>
 #include "rviz/tool.h"
 #include <QCursor>
 #include <QObject>
+#include <ros/node_handle.h>
+#include <ros/publisher.h>
 #endif
 
-#include <sensor_msgs/PointCloud2.h>
 #include "rviz/default_plugin/tools/selection_tool.h"
+#include <sensor_msgs/PointCloud2.h>
 
-namespace rviz_plugin_selected_points_publisher
-{
+namespace rviz_plugin_selected_points_publisher {
 class SelectedPointsPublisher;
 
-class SelectedPointsPublisher : public rviz::SelectionTool
-{
+class SelectedPointsPublisher : public rviz::SelectionTool {
   Q_OBJECT
-public:
+ public:
   SelectedPointsPublisher();
   virtual ~SelectedPointsPublisher();
   virtual int processMouseEvent(rviz::ViewportMouseEvent& event);
   virtual int processKeyEvent(QKeyEvent* event, rviz::RenderPanel* panel);
 
-public Q_SLOTS:
+ public Q_SLOTS:
   void updateTopic();
 
-protected:
+ protected:
   int processSelectedArea();
   ros::NodeHandle node_handle_;
   ros::Publisher rviz_selected_publisher_;
